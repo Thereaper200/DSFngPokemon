@@ -1,0 +1,30 @@
+<div class="content">
+    <form [formGroup]="myForm" (ngSubmit)="onSubmit()" class="pokedex-form">
+        <mat-form-field appearance="outline" class="fieldTest">
+            <mat-label>Ingresa un pokemón</mat-label>
+            <input matInput placeholder="pokemon" formControlName="name" type="text">
+        </mat-form-field>
+    </form>
+    <div *ngIf="!showImage" class="pokemon-info">
+        <h2>{{data.name}}</h2>
+    </div>
+    <div *ngIf="showImage">
+        <mat-card class="example-card pokedex-card">
+            <mat-card-header class="pokedex-card-header">
+                <mat-card-title>{{data.name}}</mat-card-title>
+                <mat-card-subtitle>{{data.types[0].type.name}}</mat-card-subtitle>
+            </mat-card-header>
+            <img class="pokemonImage" mat-card-image src={{data.sprites.front_default}} alt="Photo">
+            <mat-card-content class="pokedex-card-content">
+                <h3>Abilities:</h3>
+                <ul>
+                    <li *ngFor="let ability of data.abilities">{{ ability.ability.name }}</li>
+                </ul>
+                <h3>Additional Info:</h3>
+                <p>Height: {{data.height}}</p>
+                <p>Weight: {{data.weight}}</p>
+                <p>Base Experience: {{data.base_experience}}</p>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
